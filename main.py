@@ -27,4 +27,14 @@ while len(states_guessed) < 50:
         state.write(new_state.state.item())
 
         states_guessed.append(answer)
-    
+    if answer == 'Exit':
+        states_missed = []
+
+        for state in states: 
+            if state not in states_guessed:
+                states_missed.append(state)
+
+        states_missed_csv = pd.DataFrame(states_missed)
+        states_missed_csv.to_csv('States_to_learn.csv')
+
+        break
